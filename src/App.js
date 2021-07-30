@@ -69,11 +69,13 @@ class App extends Component {
     });
   };
 
-  openLargeImg = largeImageURL => {
+  openModal = largeImageURL => {
     this.setState({
       showModal: true,
       modalImg: largeImageURL,
     });
+
+    console.log(this.state.modalImg);
   };
 
   render() {
@@ -96,7 +98,7 @@ class App extends Component {
               timeout={3000}
             />
           )}
-          {<ImageGallery images={images} onImgClick={this.openLargeImg} />}
+          {<ImageGallery images={images} onImgClick={this.openModal} />}
 
           {shouldRenderLoadMoreButton && <Button onClick={this.fetchImg} />}
 
