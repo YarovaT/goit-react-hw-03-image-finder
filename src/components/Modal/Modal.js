@@ -6,14 +6,10 @@ const modalRoot = document.querySelector('#modal-root');
 
 export default class Modal extends Component {
   componentDidMount() {
-    console.log('modal mount');
-
     window.addEventListener('keydown', this.handleKeyDown);
   }
 
   componentWillUnmount() {
-    console.log('modal unmount');
-
     window.removeEventListener('keydown', this.handleKeyDown);
   }
 
@@ -30,10 +26,13 @@ export default class Modal extends Component {
   };
 
   render() {
+    const { children } = this.props;
+    const backdropClick = this.handleBackdropClick;
+
     return createPortal(
-      <div className={style.overlay} onClick={this.handleBackdropClick}>
+      <div className={style.overlay} onClick={backdropClick}>
         <div className={style.modal}>
-          <img src={this.props.children} alt="" />
+          <img src={children} alt="" />
         </div>
       </div>,
       modalRoot,
